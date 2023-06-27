@@ -1,15 +1,18 @@
 import { Layout } from "components/Layout/Layout";
-import { AppBar } from "components/AppBar/AppBar";
-import { TaskForm } from "components/TaskForm/TaskForm";
-import { TaskList } from "components/TaskList/TaskList";
-
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "redux/store";
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const counter = useSelector(state => state.myValue);
+
   return (
     <Layout>
-      <AppBar />
-      <TaskForm />
-      <TaskList />
+      <h1>App</h1>
+      <p>Counter: {counter}</p>
+      <button onClick={() => dispatch(increment(5))}>+</button>
+      <button onClick={() => dispatch(decrement(5))}>-</button>
+
     </Layout>
   );
 };
