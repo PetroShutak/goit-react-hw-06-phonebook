@@ -1,18 +1,18 @@
-import { Layout } from "components/Layout/Layout";
-import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "redux/store";
+import React from 'react';
+import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 
-export const App = () => {
-  const dispatch = useDispatch();
-  const counter = useSelector(state => state.myValue);
-
+function App() {
   return (
-    <Layout>
+    <div>
       <h1>App</h1>
-      <p>Counter: {counter}</p>
-      <button onClick={() => dispatch(increment(5))}>+</button>
-      <button onClick={() => dispatch(decrement(5))}>-</button>
-
-    </Layout>
+      <ContactForm />
+      <h2>Contacts</h2>
+      <Filter />
+      <ContactList />
+    </div>
   );
-};
+}
+
+export default App;
