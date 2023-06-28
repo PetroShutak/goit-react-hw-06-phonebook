@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 // import PropTypes from 'prop-types';
 // import { Container, Button, Input, Label, Form } from './ContactForm.styled';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact, setContacts } from 'redux/contactsSlice';
 
-const ContactForm = ({ onAddContact }) => {
+
+const ContactForm = () => {
+  const contacts = useSelector(state => state.contacts);
+
+  const dispatch = useDispatch();
+
+  
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -25,7 +33,7 @@ const ContactForm = ({ onAddContact }) => {
         name: name.trim(),
         number: number.trim(),
       };
-      onAddContact(newContact);
+      dispatch(setContacts([...contacts, newContact]));
       setName('');
       setNumber('');
     }
@@ -65,7 +73,7 @@ const ContactForm = ({ onAddContact }) => {
           onChange={handleChange}
         />
         <br />
-        <button type="submit">Add Contact</button>
+        <button type="submit" onClick={() => dispatch(addContact())}>Add Contact</button>
       </form>
     </section>
   );
