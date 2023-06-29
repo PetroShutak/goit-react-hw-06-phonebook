@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { deleteContact } from 'redux/contactsSlice';
 import { getContacts, getFilter } from 'redux/selectors';
+import PropTypes from 'prop-types';
 
 const notify = {
   error: message => toast.error(message),
@@ -39,5 +40,18 @@ const ContactList = () => {
     </div>
   );
 };
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  filter: PropTypes.string,
+  onDeleteContact: PropTypes.func,
+};
+
 
 export default ContactList;

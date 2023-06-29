@@ -5,6 +5,7 @@ import { addContact } from 'redux/contactsSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getContacts } from 'redux/selectors';
+import PropTypes from 'prop-types';
 
 const notify = {
   error: message => toast.error(message),
@@ -95,6 +96,13 @@ const ContactForm = () => {
       </form>
     </section>
   );
+};
+
+ContactForm.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.string,
+  onSubmit: PropTypes.func,
+  
 };
 
 export default ContactForm;
