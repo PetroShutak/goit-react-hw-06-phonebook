@@ -2,16 +2,18 @@ import React from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
+import { Container, Title, Subtitle } from './App.styled';
+
 
 function App() {
   return (
-    <div>
-      <h1>PnoneBook</h1>
+    <Container>
+      <Title>PnoneBook</Title>
       <ContactForm />
-      <h2>Contacts</h2>
+      <Subtitle>Contacts</Subtitle>
       <Filter />
       <ContactList />
-    </div>
+    </Container>
   );
 }
 

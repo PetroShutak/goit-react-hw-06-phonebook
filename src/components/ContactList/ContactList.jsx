@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { deleteContact } from 'redux/contactsSlice';
 import { getContacts, getFilter } from 'redux/selectors';
 import PropTypes from 'prop-types';
+import { ContactListContainer, Title, ContactItem, Name, Number, DeleteButton } from './ContactList.styled';
 
 const notify = {
   error: message => toast.error(message),
@@ -26,18 +27,19 @@ const ContactList = () => {
   );
 
   return (
-    <div>
+    <ContactListContainer>
       <ToastContainer />
-      <h2>Contact List</h2>
+      <Title>Contact List</Title>
       <ul>
         {filteredContacts.map(({ id, name, number }) => (
-          <li key={id}>
-            {name}: {number}
-            <button onClick={() => handleDelete(id)}>Delete</button>
-          </li>
+          <ContactItem key={id}>
+            <Name>{name}:</Name>
+            <Number>{number}</Number>
+            <DeleteButton onClick={() => handleDelete(id)}>Delete</DeleteButton>
+          </ContactItem>
         ))}
       </ul>
-    </div>
+    </ContactListContainer>
   );
 };
 
