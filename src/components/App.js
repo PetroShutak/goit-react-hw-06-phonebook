@@ -6,7 +6,7 @@ import Filter from './Filter/Filter';
 function App() {
   return (
     <div>
-      <h1>App</h1>
+      <h1>PnoneBook</h1>
       <ContactForm />
       <h2>Contacts</h2>
       <Filter />
