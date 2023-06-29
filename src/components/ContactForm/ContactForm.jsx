@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { getContacts } from 'redux/selectors';
+
+const notify = {
+  error: message => toast.error(message),
+  success: message => toast.success(message),
+};
 
 const ContactForm = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -20,21 +30,35 @@ const ContactForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-
+  
     if (name.trim() !== '' && number.trim() !== '') {
+      const isExistingContact = contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      );
+  
+      if (isExistingContact) {
+        toast.error(`${name} is already in contacts`);
+        return;
+      }
+  
       const newContact = {
         id: nanoid(),
         name: name.trim(),
         number: number.trim(),
       };
+  
       dispatch(addContact(newContact));
       setName('');
       setNumber('');
+  
+      notify.success(`${newContact.name} added to contacts`);
     }
   };
+  
 
   return (
     <section>
+      <ToastContainer />
       <form
         onSubmit={handleSubmit}
         style={{
