@@ -6,20 +6,21 @@ const Filter = () => {
   const dispatch = useDispatch();
   const value = useSelector(state => state.contacts.filter);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     dispatch(setFilter(e.target.value));
   };
 
   return (
     <label>
       Find contacts by name:
-      <br/>
-      <input type="text" value={value} onChange={handleChange} placeholder='search...' />
+      <br />
+      <input type="text" value={value} onChange={handleChange} placeholder="search..." />
     </label>
   );
 };
 
 export default Filter;
+
 
 // import React from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
