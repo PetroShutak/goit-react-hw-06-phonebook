@@ -14,13 +14,13 @@ const contactsSlice = createSlice({
       state.contacts = action.payload;
     },
     addContact: (state, action) => {
-      const { name } = action.payload;
-      const isExistingContact = state.contacts.some(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      );
-      if (isExistingContact) {
-        return;
-      }
+      // const { name } = action.payload;
+      // const isExistingContact = state.contacts.some(
+      //   contact => contact.name.toLowerCase() === name.toLowerCase()
+      // );
+      // if (isExistingContact) {
+      //   return;
+      // }
       state.contacts.push(action.payload);
     },
     deleteContact: (state, action) => {
